@@ -1,0 +1,30 @@
+{
+    "dockerFile": "./Dockerfile",
+    "workspaceFolder": "/work",
+    "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "njpwerner.autodocstring",
+        "eamodio.gitlens",
+        "ms-python.vscode-pylance",
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "runArgs": [
+        // https://github.com/pytorch/pytorch/issues/2244
+        "--shm-size=8G",
+        "--runtime=nvidia",
+    ],
+    // Change the path to your source tree here.
+    "workspaceMount": "source=/home/gdumont/dev/pavemetrics/torchlars,target=/work,type=bind,consistency=cached",
+    "remoteEnv": {
+        // Change your env vars here.
+    },
+    "mounts": [
+        // Add other mounts, training data for example.
+        //"source=/media/data/projects/pavemetrics/lrail,target=/data,type=bind,consistency=cached"
+    ],
+    // Add any command you want to execute at containrer startup here.
+    "postCreateCommand": "/bin/bash postcreatecommand.sh"
+}
